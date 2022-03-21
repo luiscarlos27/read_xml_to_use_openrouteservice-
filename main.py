@@ -1,7 +1,7 @@
 from xml.dom import minidom
 
-def print_xml():
-    doc = minidom.parse("/home/students/Desktop/XMLCH")
+def print_xml(file):
+    doc = minidom.parse(file)
     items = doc.getElementsByTagName('ExtRoute')
 
     routes = []
@@ -64,4 +64,4 @@ def print_xml():
     print(routes)
 
 if __name__ == '__main__':
-    print_xml()
+    print_xml("/home/students/Desktop/XMLCH")

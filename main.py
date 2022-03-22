@@ -30,13 +30,13 @@ def print_xml(file):
             docStop = docTrip[j].getElementsByTagName('DocStop')
             for k in range(len(docStop)):
                 if k == 0:
-                    print("validations the header")
+                    #print("validations the header")
                     depot = docStop[k].attributes['LocationRefNumber'].value
                     longitudeDepot = docStop[k].attributes['Longitude'].value
                     latitudeDepot = docStop[k].attributes['Latitude'].value
                     path.append(
                         {"origin": "Depot", "name": depot, "longitude": longitudeDepot, "latitude": latitudeDepot})
-                    print(depot)
+                    #print(depot)
                 elif k > 0:
                     docPath = docStop[k].getElementsByTagName('DocPath')
                     instructions = docStop[k].getElementsByTagName('DocDrivingDirections')
@@ -65,7 +65,7 @@ def print_xml(file):
             entity["path"] = path
             entity["indications"] = indications
             routes.append(entity)
-        print("End Route " + str(route))
+        #print("End Route " + str(route))
     return routes
 
 
@@ -91,7 +91,7 @@ def request_api(data):
     headers = {'Content-type': 'application/json'}
     resp = requests.post('http://localhost:8080/ors/v2/directions/driving-car/geojson', data=json.dumps(data),
                          headers=headers)
-    print(resp.text)
+    return resp.text
 
 def convert_json_request(json):
     """

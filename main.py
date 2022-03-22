@@ -69,17 +69,23 @@ def print_xml(file):
     return routes
 
 
-def send_data_service(json):
+def send_data_service(routes):
     """
     :param json:  json with all information of the routes
     :return: json with inditations the openrouteservice
     """
+    data = []
     for i in range(1):
-        number_requests = convert_json_request(json[i]["indications"])
+        value = {}
+        value["route"] = routes[i]
+        indicationsApi = []
+        number_requests = convert_json_request(routes[i]["indications"])
         for request in number_requests:
-            request_api(request)
-
-    return 0
+            info = request_api(request)
+            indicationsApi.append(json.loads(info))
+        value["indicationsApi"] = indicationsApi
+        data.append(value)
+    return data
 
 def request_api(data):
     """
@@ -124,4 +130,5 @@ def convert_json_request(json):
 
 if __name__ == '__main__':
     data = print_xml("/home/students/Desktop/XMLCH")
-    send_data_service(data)
+    value = send_data_service(data)
+    print(value)

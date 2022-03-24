@@ -17,7 +17,7 @@ def print_xml(file):
     for i in range(len(items)):
         extRoute = items[i]
         route = items[i].attributes['RouteName'].value
-        print("Start Route " + str(route))
+        #print("Start Route " + str(route))
         docTrip = items[i].getElementsByTagName('DocTrip')
 
         for j in range(len(docTrip)):
